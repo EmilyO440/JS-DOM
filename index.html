@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Table and Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Optional: Add some custom styling */
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Bootstrap Table</h2>
+
+        <!-- Bootstrap Table -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <!-- Bootstrap Form -->
+        <h2>Add New Row</h2>
+        <form id="dataForm">
+            <div class="form-group">
+                <label for="inputName">Name:</label>
+                <input type="text" class="form-control" id="inputName" required>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email:</label>
+                <input type="email" class="form-control" id="inputEmail" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Row</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // JavaScript to handle form submission and table row addition
+        document.getElementById('dataForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get input values
+            var name = document.getElementById('inputName').value;
+            var email = document.getElementById('inputEmail').value;
+
+            // Create a new table row
+            var newRow = document.createElement('tr');
+            newRow.innerHTML = `<td>${generateRandomId()}</td><td>${name}</td><td>${email}</td>`;
+
+            // Append the new row to the table
+            document.getElementById('tableBody').appendChild(newRow);
+
+            // Clear form inputs
+            document.getElementById('inputName').value = '';
+            document.getElementById('inputEmail').value = '';
+        });
+
+        // Function to generate a random ID (for demo purposes)
+        function generateRandomId() {
+            return Math.floor(Math.random() * 1000);
+        }
+    </script>
+
+</body>
+</html>
